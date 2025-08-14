@@ -56,44 +56,6 @@ module soil_erod_mod
   public ::  gypsum_frac_coarse02
   public ::  gypsum_frac_giant
 
-  ! Longlei Li - apply BRIFT online
-  !public ::  illite_frac_accum
-  !public ::  illite_frac_aitken
-  !public ::  illite_frac_coarse
-  !public ::  kaolinite_frac_accum
-  !public ::  kaolinite_frac_aitken
-  !public ::  kaolinite_frac_coarse
-  !public ::  mont_frac_accum
-  !public ::  mont_frac_aitken
-  !public ::  mont_frac_coarse
-  !public ::  hematite_frac_accum
-  !public ::  hematite_frac_aitken
-  !public ::  hematite_frac_coarse
-  !public ::  quartz_frac_accum
-  !public ::  quartz_frac_aitken
-  !public ::  quartz_frac_coarse
-  !public ::  calcite_frac_accum
-  !public ::  calcite_frac_aitken
-  !public ::  calcite_frac_coarse
-  !public ::  feldspar_frac_accum
-  !public ::  feldspar_frac_aitken
-  !public ::  feldspar_frac_coarse
-  !public ::  gypsum_frac_accum
-  !public ::  gypsum_frac_aitken
-  !public ::  gypsum_frac_coarse
-!--++Longlei Li--
-  !public ::  illite_clay
-  !public ::  kaolinite_clay
-  !public ::  mont_clay
-  !public ::  hematite_clay
-  !public ::  hematite_silt
-  !public ::  quartz_clay
-  !public ::  quartz_silt
-  !public ::  calcite_clay
-  !public ::  calcite_silt
-  !public ::  feldspar_silt
-  !public ::  gypsum_silt
-!----Longlei Li--
 #endif
   public :: asphericity_factor
 
@@ -140,20 +102,6 @@ module soil_erod_mod
   real(r8), allocatable ::  gypsum_frac_coarse01(:,:)
   real(r8), allocatable ::  gypsum_frac_coarse02(:,:)
   real(r8), allocatable ::  gypsum_frac_giant(:,:)
-!--++Longlei Li--
-  ! Longlei Li - apply BRIFT online
-  !real(r8), allocatable ::  illite_clay(:,:)
-  !real(r8), allocatable ::  kaolinite_clay(:,:)
-  !real(r8), allocatable ::  mont_clay(:,:)
-  !real(r8), allocatable ::  hematite_clay(:,:)
-  !real(r8), allocatable ::  hematite_silt(:,:)
-  !real(r8), allocatable ::  quartz_clay(:,:)
-  !real(r8), allocatable ::  quartz_silt(:,:)
-  !real(r8), allocatable ::  calcite_clay(:,:)
-  !real(r8), allocatable ::  calcite_silt(:,:)
-  !real(r8), allocatable ::  feldspar_silt(:,:)
-  !real(r8), allocatable ::  gypsum_silt(:,:)
-!----Longlei Li--
 #endif
 !++Longlei Li
  real(r8), allocatable ::  asphericity_factor(:)
@@ -222,20 +170,6 @@ contains
     real(r8), allocatable :: gypsum_frac_in_coarse01(:,:)
     real(r8), allocatable :: gypsum_frac_in_coarse02(:,:)
     real(r8), allocatable :: gypsum_frac_in_giant(:,:)
-!--++Longlei--
-  ! Longlei Li - apply BRIFT online
-  !  real(r8), allocatable ::  illite_in_clay(:,:)
-  !  real(r8), allocatable ::  kaolinite_in_clay(:,:)
-  !  real(r8), allocatable ::  mont_in_clay(:,:)
-  !  real(r8), allocatable ::  hematite_in_clay(:,:)
-  !  real(r8), allocatable ::  hematite_in_silt(:,:)
-  !  real(r8), allocatable ::  quartz_in_clay(:,:)
-  !  real(r8), allocatable ::  quartz_in_silt(:,:)
-  !  real(r8), allocatable ::  calcite_in_clay(:,:)
-  !  real(r8), allocatable ::  calcite_in_silt(:,:)
-  !  real(r8), allocatable ::  feldspar_in_silt(:,:)
-  !  real(r8), allocatable ::  gypsum_in_silt(:,:)
-!----Longlei--
 #endif
 !--++Longlei--
     real(r8), allocatable ::  correct_factor(:,:)
@@ -326,20 +260,6 @@ contains
     allocate(gypsum_frac_in_coarse02(nlon,nlat))
     allocate(gypsum_frac_in_giant(nlon,nlat))
 
-!--++Longlei--
-  ! Longlei Li - apply BRIFT online
-  !  allocate(illite_in_clay(nlon,nlat))
-  !  allocate(kaolinite_in_clay(nlon,nlat))
-  !  allocate(mont_in_clay(nlon,nlat))
-  !  allocate(hematite_in_clay(nlon,nlat))
-  !  allocate(hematite_in_silt(nlon,nlat))
-  !  allocate(quartz_in_clay(nlon,nlat))
-  !  allocate(quartz_in_silt(nlon,nlat))
-  !  allocate(calcite_in_clay(nlon,nlat))
-  !  allocate(calcite_in_silt(nlon,nlat))
-  !  allocate(feldspar_in_silt(nlon,nlat))
-  !  allocate(gypsum_in_silt(nlon,nlat))
-!----Longlei--
 #endif
     allocate(correct_factor(nlon,nlat))
 
@@ -444,48 +364,6 @@ contains
     ierr = pio_inq_varid( ncid, 'FracG5', vid )            !FracG5
     ierr = pio_get_var( ncid, vid, gypsum_frac_in_giant )
 
-!++Longlei--
-  ! Longlei Li - apply BRIFT online
-
-  !  ierr = pio_inq_varid( ncid, 'FracI', vid )            !FracIa
-  !  ierr = pio_get_var( ncid, vid, illite_in_clay )
-
-  !  ierr = pio_inq_varid( ncid, 'FracK', vid )            !FracKa
-  !  ierr = pio_get_var( ncid, vid, kaolinite_in_clay )
-
-  !  ierr = pio_inq_varid( ncid, 'FracS', vid )            !FracSa
-  !  ierr = pio_get_var( ncid, vid, mont_in_clay )
-
-  !  ierr = pio_inq_varid( ncid, 'FracH1', vid )            !FracHa
-  !  ierr = pio_get_var( ncid, vid, hematite_in_clay )
-  !  ierr = pio_inq_varid( ncid, 'FracH2', vid )            !FracHc
-  !  ierr = pio_get_var( ncid, vid, hematite_in_silt )
-
-  !  ierr = pio_inq_varid( ncid, 'FracQ1', vid )            !FracQa
-  !  ierr = pio_get_var( ncid, vid, quartz_in_clay )
-  !  ierr = pio_inq_varid( ncid, 'FracQ2', vid )            !FracQc
-  !  ierr = pio_get_var( ncid, vid, quartz_in_silt )
-
-  !  ierr = pio_inq_varid( ncid, 'FracC1', vid )            !FracCa
-  !  ierr = pio_get_var( ncid, vid, calcite_in_clay )
-  !  ierr = pio_inq_varid( ncid, 'FracC2', vid )            !FracCc
-  !  ierr = pio_get_var( ncid, vid, calcite_in_silt )
-
-  !  ierr = pio_inq_varid( ncid, 'FracF', vid )            !FracFa
-  !  ierr = pio_get_var( ncid, vid, feldspar_in_silt )
-  !  ierr = pio_inq_varid( ncid, 'FracG', vid )            !FracFc
-  !  ierr = pio_get_var( ncid, vid, gypsum_in_silt )
-
-! currently, we use fraction of accumulation mode for aitken mode       
-! no needed -Longlei Li
-!    illite_frac_in_aitken     = illite_frac_in_aitken
-!    kaolinite_frac_in_aitken  = kaolinite_frac_in_accum
-!    mont_frac_in_aitken       = mont_frac_in_accum
-!    hematite_frac_in_aitken   = hematite_frac_in_accum
-!    quartz_frac_in_aitken     = quartz_frac_in_accum
-!    calcite_frac_in_aitken    = calcite_frac_in_accum
-!    feldspar_frac_in_aitken   = feldspar_frac_in_accum
-!    gypsum_frac_in_aitken     = gypsum_frac_in_accum
 #endif
 !++Longlei Li--
     ierr = pio_inq_varid( ncid, 'corrFact', vid )            
@@ -549,18 +427,6 @@ contains
     allocate( gypsum_frac_coarse02(pcols,begchunk:endchunk) )
     allocate( gypsum_frac_giant(pcols,begchunk:endchunk) )
 !++Longlei Li--
-  ! Longlei Li - apply BRIFT online
-  !  allocate( illite_clay(pcols,begchunk:endchunk) )
-  !  allocate( kaolinite_clay(pcols,begchunk:endchunk) )
-  !  allocate( mont_clay(pcols,begchunk:endchunk) )
-  !  allocate( hematite_clay(pcols,begchunk:endchunk) )
-  !  allocate( hematite_silt(pcols,begchunk:endchunk) )
-  !  allocate( quartz_clay(pcols,begchunk:endchunk) )
-  !  allocate( quartz_silt(pcols,begchunk:endchunk) )
-  !  allocate( calcite_clay(pcols,begchunk:endchunk) )
-  !  allocate( calcite_silt(pcols,begchunk:endchunk) )
-  !  allocate( feldspar_silt(pcols,begchunk:endchunk) )
-  !  allocate( gypsum_silt(pcols,begchunk:endchunk) )
 #endif
 !++Longlei Li--
    allocate( asphericity_factor(pcols) )
@@ -634,19 +500,6 @@ contains
        call lininterp(gypsum_frac_in_coarse02(:,:), nlon, nlat, gypsum_frac_coarse02(:,c), ncols, lon_wgts, lat_wgts)
        call lininterp(gypsum_frac_in_giant(:,:), nlon, nlat, gypsum_frac_giant(:,c), ncols, lon_wgts, lat_wgts)
 !++Longlei Li--
-! Longlei Li - apply BRIFT online
-!       call lininterp(illite_in_clay(:,:),    nlon, nlat, illite_clay(:,c),    ncols, lon_wgts, lat_wgts)
-!       call lininterp(kaolinite_in_clay(:,:), nlon, nlat, kaolinite_clay(:,c), ncols, lon_wgts, lat_wgts)
-!       call lininterp(mont_in_clay(:,:),      nlon, nlat, mont_clay(:,c),      ncols, lon_wgts, lat_wgts)
-!       call lininterp(hematite_in_clay(:,:),  nlon, nlat, hematite_clay(:,c),  ncols, lon_wgts, lat_wgts)
-!       call lininterp(hematite_in_silt(:,:),  nlon, nlat, hematite_silt(:,c),  ncols, lon_wgts, lat_wgts)
-!       call lininterp(quartz_in_clay(:,:),    nlon, nlat, quartz_clay(:,c),    ncols, lon_wgts, lat_wgts)
-!       call lininterp(quartz_in_silt(:,:),    nlon, nlat, quartz_silt(:,c),    ncols, lon_wgts, lat_wgts)
-!       call lininterp(calcite_in_clay(:,:),   nlon, nlat, calcite_clay(:,c),   ncols, lon_wgts, lat_wgts)
-!       call lininterp(calcite_in_silt(:,:),   nlon, nlat, calcite_silt(:,c),   ncols, lon_wgts, lat_wgts)
-!       call lininterp(feldspar_in_silt(:,:),  nlon, nlat, feldspar_silt(:,c),  ncols, lon_wgts, lat_wgts)
-!       call lininterp(gypsum_in_silt(:,:),    nlon, nlat, gypsum_silt(:,c),    ncols, lon_wgts, lat_wgts)
-
 #endif
 !++Longlei Li--
        call lininterp(correct_factor(:,:),    nlon, nlat, asphericity_factor(:),    ncols, lon_wgts, lat_wgts)
@@ -870,72 +723,6 @@ contains
        call endrun
     end if
 !++Longlei Li--
-
-! Longlei Li - apply BRIFT online
-!    deallocate( illite_in_clay, stat=ierr )
-!    if( ierr /= 0 ) then
-!       write(iulog,*) 'dust_initialize: failed to deallocate illite_in_clay, ierr = ',ierr
-!       call endrun
-!    end if
-!
-!    deallocate( kaolinite_in_clay, stat=ierr )
-!    if( ierr /= 0 ) then
-!       write(iulog,*) 'dust_initialize: failed to deallocate kaolinite_in_clay, ierr = ',ierr
-!       call endrun
-!    end if
-!
-!    deallocate( mont_in_clay, stat=ierr )
-!    if( ierr /= 0 ) then
-!       write(iulog,*) 'dust_initialize: failed to deallocate mont_in_clay, ierr = ',ierr
-!       call endrun
-!    end if
-!
-!    deallocate( hematite_in_clay, stat=ierr )
-!    if( ierr /= 0 ) then
-!       write(iulog,*) 'dust_initialize: failed to deallocate hematite_in_clay, ierr = ',ierr
-!       call endrun
-!    end if
-!
-!    deallocate( hematite_in_silt, stat=ierr )
-!    if( ierr /= 0 ) then
-!       write(iulog,*) 'dust_initialize: failed to deallocate hematite_in_silt, ierr = ',ierr
-!       call endrun
-!    end if
-!
-!    deallocate( quartz_in_clay, stat=ierr )
-!    if( ierr /= 0 ) then
-!       write(iulog,*) 'dust_initialize: failed to deallocate quartz_in_clay, ierr = ',ierr
-!       call endrun
-!    end if
-!    deallocate( quartz_in_silt, stat=ierr )
-!    if( ierr /= 0 ) then
-!       write(iulog,*) 'dust_initialize: failed to deallocate quartz_in_silt, ierr = ',ierr
-!       call endrun
-!    end if
-!
-!    deallocate( calcite_in_clay, stat=ierr )
-!    if( ierr /= 0 ) then
-!       write(iulog,*) 'dust_initialize: failed to deallocate calcite_in_clay, ierr = ',ierr
-!       call endrun
-!    end if
-!
-!    deallocate( calcite_in_silt, stat=ierr )
-!    if( ierr /= 0 ) then
-!       write(iulog,*) 'dust_initialize: failed to deallocate calcite_in_silt, ierr = ',ierr
-!       call endrun
-!    end if
-!
-!    deallocate( feldspar_in_silt, stat=ierr )
-!    if( ierr /= 0 ) then
-!       write(iulog,*) 'dust_initialize: failed to deallocate feldspar_in_silt, ierr = ',ierr
-!       call endrun
-!    end if
-!
-!    deallocate( gypsum_in_silt, stat=ierr )
-!    if( ierr /= 0 ) then
-!       write(iulog,*) 'dust_initialize: failed to deallocate gypsum_in_silt, ierr = ',ierr
-!       call endrun
-!    end if
 #endif
 !++Longlei Li--
     deallocate( correct_factor, stat=ierr )
